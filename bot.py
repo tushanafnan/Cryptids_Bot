@@ -19,6 +19,23 @@ from telegram.ext import ( # type: ignore
     CallbackContext,
     PicklePersistence,
 )
+from telegram import Bot
+from telegram.ext import Updater
+
+# Your bot token
+bot_token = '7332076284:AAF7eo9mwafIAoiOggt9nOzMXV2fU_km7lQ'
+
+# Create the Updater object with the token
+updater = Updater(token=bot_token)
+
+# Set the webhook URL (use your domain here)
+webhook_url = 'https://cryptids-bot.onrender.com/webhook'
+
+# Set webhook
+updater.bot.set_webhook(url=webhook_url)
+
+# Now run the webhook (render is likely running on port 443 for HTTPS)
+updater.start_webhook(listen='0.0.0.0', port=443, url_path='webhook', webhook_url=webhook_url)
 from telegram.utils import helpers # type: ignore
 import telegram # type: ignore
 import pymongo # type: ignore
